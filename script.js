@@ -1,4 +1,4 @@
-﻿let selectedDoctor = null;
+let selectedDoctor = null;
 let availableSlots = 0;
 let doctorsList = {};
 let feedbackData = {};  // stores feedback per doctor: { "Dr. Name": [ {name, rating, text, date}, ... ] }
@@ -2865,7 +2865,7 @@ function showDoctors() {
         resultDiv.innerHTML += `
             <div class="doctor-card">
                 <img src="${doc.image}" class="doctor-img">
-                <h3>Dr. ${doc.name}</h3>
+                <h3>${doc.name}</h3>
                 <p><strong>Hospital:</strong> ${doc.hospital}</p>
                 <img src="${doc.hospitalImage}" class="hospital-img">
                 <p><strong>Rating:</strong> ${doc.rating}</p>
