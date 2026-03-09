@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Health Care Searching System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="page-header">
+        <h1>Health Care <span>Searching</span></h1>
+    </div>
+
+    <div class="main-wrap">
+        <div class="tab-bar">
+            <button id="tabInfo" class="tab-btn active" onclick="showTab('info')">Search</button>
+            <button id="tabDoctors" class="tab-btn" onclick="showTab('doctors')">Doctors List</button>
+        </div>
+        <div id="tabContentInfo" class="tab-content-area">
+            <div class="Information-box">
+                <h2>Find a Specialist</h2>
+                <label>Doctor Type</label>
+                <select id="doctor">
+                    <option value="">-- Select Specialist --</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Dermatologist">Dermatologist</option>
+                    <option value="Gastroenterologist">Gastroenterologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="orthopedic Surgeon">Orthopedic Surgeon</option>
+                    <option value="gynecologist">Gynecologist</option>
+                    <option value="Nephrologist">Nephrologist</option>
+                    <option value="Endocrinologist">Endocrinologist</option>
+                    <option value="Otolaryngologist">Otolaryngologist</option>
+                    <option value="General Surgeon">General Surgeon</option>
+
+                </select>
+                <label>Place</label>
+                <select id="place">
+                    <option value="">-- Select Place --</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Secunderabad">Secunderabad</option>
+                    <option value="Medchal-Malkajgiri">Medchal-Malkajgiri</option>
+                    <option value="Patancheruvu">Patancheruvu</option>
+                    <option value="Rangareddy">Rangareddy</option>
+                    <option value="warangal">Warangal</option>
+                    <option value="Sangareddy">Sangareddy</option>
+                    <option value="Kariminagar">Kariminagar</option>
+                    <option value="Siddipet">Siddipet</option>
+                    <option value="Sircilla">Sircilla</option>
+
+                </select>
+                <button id="submitBtn" onclick="submitAndShowDoctors()" disabled>Submit</button>
+            </div>
+        </div>
+        <div id="tabContentDoctors" class="tab-content-area" style="display:none;">
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Book Appointment</h2>
+            <p>Doctor: <strong id="selectedDoctorName"></strong></p>
+            <p>Available Slots: <strong id="availableSlots" style="color: green;"></strong></p>
+
+            <label>Patient Name</label>
+            <input type="text" id="patientName" placeholder="Enter your full name" pattern="[A-Za-z ]+"
+                title="Letters and spaces only" oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'')">
+
+            <label>Phone Number</label>
+            <input type="text" id="patientPhone" placeholder="Enter your phone number" inputmode="numeric"
+                pattern="[0-9]*" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')">
+
+            <label>Preferred Date</label>
+            <input type="date" id="preferredDate">
+
+            <div class="modal-buttons">
+                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+                <button onclick="confirmBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFeedbackModal()">&times;</span>
+            <h2>Leave Feedback</h2>
+            <p>Doctor: <strong id="feedbackDoctorName"></strong></p>
+
+            <label>Your Name</label>
+            <input type="text" id="feedbackName" placeholder="Enter your name"
+                oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'')">
+
+            <label>Rating</label>
+            <div class="star-rating" id="starRating">
+                <span class="star" data-value="1" onclick="setRating(1)" onmouseover="hoverRating(1)"
+                    onmouseout="resetHover()">&#9733;</span>
+                <span class="star" data-value="2" onclick="setRating(2)" onmouseover="hoverRating(2)"
+                    onmouseout="resetHover()">&#9733;</span>
+                <span class="star" data-value="3" onclick="setRating(3)" onmouseover="hoverRating(3)"
+                    onmouseout="resetHover()">&#9733;</span>
+                <span class="star" data-value="4" onclick="setRating(4)" onmouseover="hoverRating(4)"
+                    onmouseout="resetHover()">&#9733;</span>
+                <span class="star" data-value="5" onclick="setRating(5)" onmouseover="hoverRating(5)"
+                    onmouseout="resetHover()">&#9733;</span>
+            </div>
+
+            <label>Your Feedback</label>
+            <textarea id="feedbackText" class="feedback-textarea"
+                placeholder="Share your experience with this doctor..."></textarea>
+
+            <div class="modal-buttons">
+                <button class="cancel-btn" onclick="closeFeedbackModal()">Cancel</button>
+                <button onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
